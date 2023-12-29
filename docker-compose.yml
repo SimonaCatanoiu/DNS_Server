@@ -1,0 +1,25 @@
+version: '3'
+services:
+  dns-server:
+    image: my_dns_server
+    container_name: dns-server
+    networks:
+      proiect_retele:
+        ipv4_address: 172.20.0.2
+    ports:
+      - "8055:53/tcp"
+      - "8055:53/udp"
+      - "953:953/tcp"
+      - "5000:5000"
+    volumes:
+      - ./app:/app
+      - ./my_bind9/config:/etc/bind
+      - ./my_bind9/zones:/var/lib/bind
+
+networks:
+  proiect_retele:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/24

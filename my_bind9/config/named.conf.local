@@ -1,0 +1,4 @@
+zone "proiect_retele.com" {
+    type primary;
+    file "/var/lib/bind/db.proiect_retele.com";
+};
