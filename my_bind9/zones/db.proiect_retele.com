@@ -7,7 +7,7 @@ $TTL    604800
              604800 )   ; Negative Cache TTL
 ;
 ; NS records
-IN        NS      ns1.proiect_retele.com.
+@        IN      NS      ns1.proiect_retele.com.
 ; A records
 ns1.proiect_retele.com.    IN      A      172.20.0.2
 site.proiect_retele.com.   IN      A      172.20.0.2

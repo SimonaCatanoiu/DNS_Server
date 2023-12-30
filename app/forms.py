@@ -8,9 +8,12 @@ class DNSInfoForm(FlaskForm):
     recursion = SelectField('Recursion', choices=[('yes', 'Yes'), ('no', 'No')], validators=[DataRequired()])
     allowed_recursion = FieldList(StringField('Allowed Recursion'), min_entries=1)
     forwarders = FieldList(StringField('Forwarders'), min_entries=1)
-    logfile_path = StringField('Logfile Path')
-    logfile_limit_size = StringField('Logfile Limit Size')
-    logfile_severity = SelectField('Logfile Severity', choices=[('info', 'Info'), ('warning', 'Warning'),('err', 'Error'),('alert', 'Alert')], validators=[DataRequired()])
+    logfile_path = StringField('Default Logfile Path')
+    logfile_limit_size = StringField('Default Logfile Limit Size')
+    logfile_severity = SelectField('Default Logfile Severity', choices=[('info', 'Info'), ('warning', 'Warning'),('err', 'Error'),('alert', 'Alert')], validators=[DataRequired()])
+    logfile_path2 = StringField('Query Logfile Path')
+    logfile_limit_size2 = StringField('Query Logfile Limit Size')
+    logfile_severity2 = SelectField('Query Logfile Severity', choices=[('info', 'Info'), ('warning', 'Warning'),('err', 'Error'),('alert', 'Alert')], validators=[DataRequired()])
     submit = SubmitField('Submit')
 
     def set_defaults(self, dns_info,log_info):
@@ -20,8 +23,11 @@ class DNSInfoForm(FlaskForm):
         self.allowed_recursion.default = dns_info.get("Allowed_recursion")
         self.forwarders.default = dns_info.get("Forwarders")
         
-        self.logfile_path.default = log_info.get("Logfile_path")
-        self.logfile_limit_size.default = log_info.get("Logfile_limit_size")
-        self.logfile_severity.default = log_info.get("Logfile_severity")
+        self.logfile_path.default = log_info.get("Logfile_default_path")
+        self.logfile_limit_size.default = log_info.get("Logfile_default_limit_size")
+        self.logfile_severity.default = log_info.get("Logfile_default_severity")
+        self.logfile_path2.default = log_info.get("Logfile_query_path")
+        self.logfile_limit_size2.default = log_info.get("Logfile_query_limit_size")
+        self.logfile_severity2.default = log_info.get("Logfile_query_severity")
 
         self.process()

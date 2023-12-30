@@ -18,8 +18,8 @@
             <li class="nav-item {% if request.path == '/' %}active{% endif %}">
                 <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item {% if request.path == '/features' %}active{% endif %}">
-                <a class="nav-link" href="{{ url_for('features') }}">Features</a>
+            <li class="nav-item {% if request.path == '/logs' %}active{% endif %}">
+                <a class="nav-link" href="{{ url_for('logs') }}">Logs</a>
             </li>
             <li class="nav-item {% if request.path == '/pricing' %}active{% endif %}">
                 <a class="nav-link" href="{{ url_for('pricing') }}">Pricing</a>

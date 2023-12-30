@@ -1,5 +1,8 @@
 {
-  "Logfile_path": "/var/named/log/transfer.log",
-  "Logfile_limit_size": "50m",
-  "Logfile_severity": "info"
+  "Logfile_default_path": "/var/named/log/default.log",
+  "Logfile_default_limit_size": "50m",
+  "Logfile_default_severity": "info",
+  "Logfile_query_path": "/var/named/log/query.log",
+  "Logfile_query_limit_size": "50m",
+  "Logfile_query_severity": "info"
 }

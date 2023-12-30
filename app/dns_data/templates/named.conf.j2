@@ -11,14 +11,21 @@ include "/etc/bind/named.conf.local";
 include "/etc/bind/named.conf.default-zones";
 
 logging {
-    category notify { zone_transfer_log; };
-    category xfer-in { zone_transfer_log; };
-    category xfer-out { zone_transfer_log; };
-    channel zone_transfer_log {
-        file "{{ Logfile_path }}" versions 10 size {{ Logfile_limit_size }};
+    category queries { query_log; };
+    channel query_log {
+        file "{{ Logfile_query_path }}" versions 10 size {{ Logfile_query_limit_size }};
         print-time yes;
         print-category yes;
         print-severity yes;
-        severity {{ Logfile_severity }};
+        severity {{ Logfile_query_severity }};
+    };
+
+    category default { default_log; };
+    channel default_log {
+        file "{{ Logfile_default_path }}" versions 10 size {{ Logfile_default_limit_size }};
+        print-time yes;
+        print-category yes;
+        print-severity yes;
+        severity {{ Logfile_default_severity }};
     };
 };

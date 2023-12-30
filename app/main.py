@@ -26,9 +26,9 @@ def home():
     form.set_defaults(dns_info,log_info)
     return render_template('home.html',form=form)
 
-@app.route("/features")
-def features():
-    return render_template('features.html')
+@app.route("/logs")
+def logs():
+    return render_template('logs.html')
 
 @app.route("/pricing")
 def pricing():

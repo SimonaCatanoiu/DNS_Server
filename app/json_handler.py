@@ -30,15 +30,22 @@ def generate_json_dns_info(form_data):
     }
 
     log_json_data = {
-        "Logfile_path": form_data.get('logfile_path', ''),
-        "Logfile_limit_size": form_data.get('logfile_limit_size', ''),
-        "Logfile_severity": form_data.get('logfile_severity', ''),
+        "Logfile_default_path": form_data.get('logfile_path', ''),
+        "Logfile_default_limit_size": form_data.get('logfile_limit_size', ''),
+        "Logfile_default_severity": form_data.get('logfile_severity', ''),
+        "Logfile_query_path": form_data.get('logfile_path2', ''),
+        "Logfile_query_limit_size": form_data.get('logfile_limit_size2', ''),
+        "Logfile_query_severity": form_data.get('logfile_severity2', ''),
     }
 
-    if log_json_data["Logfile_path"] == '':
-        return {"error": "Logfile_path must be non-empty"},None
-    if log_json_data["Logfile_limit_size"] == '':
-        return {"error": "Logfile_path must be non-empty"},None
+    if log_json_data["Logfile_default_path"] == '':
+        return {"error": "Logfile_default_path must be non-empty"},None
+    if log_json_data["Logfile_default_limit_size"] == '':
+        return {"error": "Logfile_default_limit_size must be non-empty"},None
+    if log_json_data["Logfile_query_path"] == '':
+        return {"error": "Logfile_query_path must be non-empty"},None
+    if log_json_data["Logfile_query_limit_size"] == '':
+        return {"error": "Logfile_query_limit_size must be non-empty"},None
     
     return json_data,log_json_data
 

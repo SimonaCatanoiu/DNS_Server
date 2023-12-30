@@ -9,8 +9,7 @@ RUN apt-get update \
 
 # Create directory and set permissions for Bind9 logs
 RUN mkdir /var/named/ \
-    && mkdir /var/named/log/ \
-    && chmod 766 /var/named/log/
+    && mkdir /var/named/log
 
 # Set the working directory for Flask
 WORKDIR /app
