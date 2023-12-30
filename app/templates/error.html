@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1>Error</h1>
+    <p>{{ error }}</p>
+    
+    <!-- Back button with a Bootstrap button style -->
+    <a href="{{ target_page_url }}" class="btn btn-primary">Back to {{ target_page_name }}</a>
+  </div>
+{% endblock %}

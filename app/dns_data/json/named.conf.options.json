@@ -1,0 +1,12 @@
+{
+  "Type": "Bind9",
+  "IP": "172.20.0.2",
+  "Recursion": "yes",
+  "Allowed_recursion": [
+    "172.20.0.0/24"
+  ],
+  "Forwarders": [
+    "8.8.8.8",
+    "8.8.4.4"
+  ]
+}

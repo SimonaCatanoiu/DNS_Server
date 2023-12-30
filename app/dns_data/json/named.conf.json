@@ -1,0 +1,5 @@
+{
+  "Logfile_path": "/var/named/log/transfer.log",
+  "Logfile_limit_size": "50m",
+  "Logfile_severity": "info"
+}

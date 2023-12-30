@@ -7,6 +7,11 @@ RUN apt-get update \
     && apt-get install -y bind9 bind9utils bind9-doc net-tools dnsutils \
     python3 python3-pip supervisor
 
+# Create directory and set permissions for Bind9 logs
+RUN mkdir /var/named/ \
+    && mkdir /var/named/log/ \
+    && chmod 766 /var/named/log/
+
 # Set the working directory for Flask
 WORKDIR /app
 

@@ -1,0 +1,18 @@
+.home_container
+{
+    width: 70%;
+}
+
+h1 {
+    text-align: center;
+}
+
+.remove-entry {
+    color: #007bff;
+    text-decoration: underline; 
+    cursor: pointer;
+}
+
+.remove-entry:hover {
+    color: #0056b3;
+}

@@ -15,10 +15,10 @@ logging {
     category xfer-in { zone_transfer_log; };
     category xfer-out { zone_transfer_log; };
     channel zone_transfer_log {
-        file "/var/named/log/transfer.log" versions 10 size 50m;
+        file "{{ Logfile_path }}" versions 10 size {{ Logfile_limit_size }};
         print-time yes;
         print-category yes;
         print-severity yes;
-        severity info;
-     };
+        severity {{ Logfile_severity }};
+    };
 };
