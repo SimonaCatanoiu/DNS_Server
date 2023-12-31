@@ -1,0 +1,15 @@
+.logs_container
+{
+    width: 100%;
+}
+
+#logContainer
+{
+    background-color: #f2f2f2;
+    border: 2px solid #d4d4d4;
+    max-height: 550px;
+    min-height: 550px;
+    text-align: left;
+    padding: 10px;
+    overflow-y: auto; 
+}

@@ -1,0 +1,26 @@
+{
+  "Serial": 4,
+  "domains": [
+    "proiect_retele.com",
+    "root.proiect_retele.com"
+  ],
+  "NS": [
+    "ns1.proiect_retele.com"
+  ],
+  "A_name": [
+    "ns1.proiect_retele.com",
+    "site.proiect_retele.com",
+    "mail.proiect_retele.com"
+  ],
+  "A_asoc": [
+    "172.20.0.2",
+    "172.20.0.2",
+    "172.20.0.3"
+  ],
+  "MX_name": [
+    "proiect_retele.com."
+  ],
+  "MX_asoc": [
+    "mail.retele3.mta.ro."
+  ]
+}

@@ -1,5 +1,31 @@
 {% extends 'base.html' %}
-
+{% block style %}
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/logs.css') }}">
+{% endblock %}
 {% block content %}
-<h1>Explore Our Logs</h1>
+<div class="logs_container text-center">
+  <h1 class="mt-4">Explore DNS Logs</h1>
+
+  <button type="button" class="btn btn-primary mt-3" onclick="loadLogs('{{ log_paths.Logfile_default_path }}')">Load Default Logs</button>
+  <button type="button" class="btn btn-primary mt-3" onclick="loadLogs('{{ log_paths.Logfile_query_path }}')">Load Query Logs</button>
+
+  <div id="logContainer" class="mt-4">
+   
+  </div>
+</div>
+
+<script>
+  function loadLogs(filePath) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var logContainer = document.getElementById('logContainer');
+      logContainer.innerText = xhr.responseText;
+      logContainer.scrollTop = logContainer.scrollHeight;
+    }
+  };
+  xhr.open('GET', '/get_logs?file_path=' + encodeURIComponent(filePath), true);
+  xhr.send();
+  }
+</script>
 {% endblock %}

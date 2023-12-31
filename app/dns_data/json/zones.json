@@ -1,0 +1,24 @@
+{
+  "zones": [
+    {
+      "Id": 1,
+      "Type": "normal",
+      "Name": "proiect_retele.com",
+      "Path": "/var/lib/bind/db.proiect_retele.com",
+      "Allow_query": [
+        "any"
+      ],
+      "Json_data_path": "./dns_data/json/zones/db.proiect_retele.com.json"
+    },
+    {
+      "Id": 2,
+      "Type": "reverse",
+      "Name": "0.20.172.in-addr.arpa",
+      "Path": "/var/lib/bind/0.20.172.in-addr.arpa.zone",
+      "Allow_query": [
+        "any"
+      ],
+      "Json_data_path": "./dns_data/json/zones/0.20.172.in-addr.arpa.zone.json"
+    }
+  ]
+}

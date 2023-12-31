@@ -9,7 +9,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">DNS Manager</a>
+        <a class="navbar-brand" href="{{ url_for('home') }}">DNS Manager</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,8 +21,11 @@
             <li class="nav-item {% if request.path == '/logs' %}active{% endif %}">
                 <a class="nav-link" href="{{ url_for('logs') }}">Logs</a>
             </li>
-            <li class="nav-item {% if request.path == '/pricing' %}active{% endif %}">
-                <a class="nav-link" href="{{ url_for('pricing') }}">Pricing</a>
+            <li class="nav-item {% if request.path == '/zones' %}active{% endif %}">
+                <a class="nav-link" href="{{ url_for('zones') }}">Zones</a>
+            </li>
+            <li class="nav-item {% if request.path == '/reverse_zones' %}active{% endif %}">
+                <a class="nav-link" href="{{ url_for('reverse_zones') }}">Reverse Zones</a>
             </li>
         </ul>
         </div>

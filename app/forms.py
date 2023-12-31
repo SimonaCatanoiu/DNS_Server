@@ -31,3 +31,34 @@ class DNSInfoForm(FlaskForm):
         self.logfile_severity2.default = log_info.get("Logfile_query_severity")
 
         self.process()
+
+
+class DnsZoneDetails(FlaskForm):
+    type = StringField('Type',render_kw={'readonly': True})
+    name = StringField('Name')
+    path = StringField('Path')
+    allow_query = FieldList(StringField('Allow Query'))
+
+    domains = FieldList(StringField('Domains'))
+    ns = FieldList(StringField('NS'))
+    a_name = FieldList(StringField('A Name'))
+    a_asoc = FieldList(StringField('A Association'))
+    mx_name = FieldList(StringField('MX Name'))
+    mx_asoc = FieldList(StringField('MX Association'))
+    submit = SubmitField('Submit')
+
+    def set_defaults(self,zone_info,zone_data):
+        self.type.default = zone_info.get("Type")
+        self.name.default = zone_info.get("Name")
+        self.path.default = zone_info.get("Path")
+        self.allow_query.default = zone_info.get("Allow_query")
+
+        self.domains.default = zone_data.get("domains")
+        self.ns.default = zone_data.get("NS")
+        self.a_name.default = zone_data.get("A_name")
+        self.a_asoc.default = zone_data.get("A_asoc")
+        self.mx_name.default = zone_data.get("MX_name")
+        self.mx_asoc.default = zone_data.get("MX_asoc")
+        
+        self.process()
+
