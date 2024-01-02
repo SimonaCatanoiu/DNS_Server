@@ -3,3 +3,14 @@
     margin: 10px auto;
     text-align: center;
 }
+
+.remove-entry
+{
+    color: #007bff;
+    text-decoration: underline; 
+    cursor: pointer;
+}
+
+.remove-entry:hover {
+    color: #0056b3;
+}

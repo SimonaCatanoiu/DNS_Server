@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/zone_details.css') }}">
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        {% for field_name in ['allow_query', 'domains', 'ns', 'ptr_name', 'ptr_ip'] %}
+            var {{ field_name }}Counter = $('#{{ field_name }}-list li').length + 1;
+            
+            $('#add-{{ field_name }}').click(function () {
+                var newEntryHtml = '<li><input type="text" name="{{ field_name }}-' + {{ field_name }}Counter + '" class="form-control d-inline-block"><span class="remove-entry ml-2">Remove</span></li>';
+                $('#{{ field_name }}-list').append(newEntryHtml);
+                {{ field_name }}Counter++;
+            });
+        {% endfor %}
+
+        $(document).on('click', '.remove-entry', function () {
+            $(this).parent().remove();
+        });
+    });
+</script>
+{% endblock %}
+
+{% macro render_field(label, form, field_name, zone_data_key) %}
+    <div class="form-group">
+        {{ label(class="form-control-label", style="font-weight: bold; font-size: 1.2em;") }}
+        <ul id="{{ field_name }}-list" class="list-unstyled">
+            {% for entry in form[field_name] %}
+                <li class="mb-2">
+                    {{ entry(class="form-control d-inline-block") }}
+                    <span class="remove-entry ml-2">Remove</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <button type="button" class="btn btn-primary" id="add-{{ field_name }}">Add</button>
+    </div>
+{% endmacro %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Zone Details</h1>
+    <form method="POST" action="{{ url_for('submit_reverse_zone_details', zone_id=zone['Id']) }}">
+        {{ form.csrf_token }}
+
+        <fieldset class="mb-4">
+            <legend>Zone Information</legend>
+            <div class="mb-3">
+                {{ form.type.label }}
+                {{ form.type(class="form-control", value=zone['Type']) }}
+            </div>
+            <div class="mb-3">
+                {{ form.name.label }}
+                {{ form.name(class="form-control", value=zone['Name']) }}
+            </div>
+            <div class="mb-3">
+                {{ form.path.label }}
+                {{ form.path(class="form-control", value=zone['Path']) }}
+            </div>
+            {{ render_field(form.allow_query.label, form, 'allow_query', 'Allow_query') }}
+        </fieldset>
+
+        <fieldset class="mb-4">
+            <legend>Zone Data Information</legend>
+            {{ render_field(form.domains.label, form, 'domains', 'domains') }}
+            {{ render_field(form.ns.label, form, 'ns', 'NS') }}
+            {{ render_field(form.ptr_name.label, form, 'ptr_name', 'PTR_Record') }}
+            {{ render_field(form.ptr_ip.label, form, 'ptr_ip', 'PTR_IP') }}
+        </fieldset>
+
+        <div class="mb-3">
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+</div>
+{% endblock %}

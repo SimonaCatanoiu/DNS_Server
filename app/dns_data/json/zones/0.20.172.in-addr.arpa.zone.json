@@ -1,0 +1,18 @@
+{
+  "Serial": 4,
+  "domains": [
+    "proiect_retele.com",
+    "root.proiect_retele.com"
+  ],
+  "NS": [
+    "ns1.proiect_retele.com"
+  ],
+  "PTR_Record": [
+    "site.proiect_retele.com",
+    "mail.proiect_retele.com"
+  ],
+  "PTR_IP": [
+    "172.20.0.2",
+    "172.20.0.3"
+  ]
+}

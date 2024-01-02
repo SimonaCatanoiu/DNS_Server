@@ -62,3 +62,57 @@ class DnsZoneDetails(FlaskForm):
         
         self.process()
 
+class AddNewZoneForm(FlaskForm):
+    type = SelectField('Type', choices=[('normal', 'Normal'), ('reverse', 'Reverse')], render_kw={'readonly': True})   
+    name = StringField('Name')
+    path = StringField('Path')
+    allow_query = FieldList(StringField('Allow Query'))
+    domains = FieldList(StringField('Domains'))
+    ns = FieldList(StringField('NS'))
+    a_name = FieldList(StringField('A Name'))
+    a_asoc = FieldList(StringField('A Association'))
+    mx_name = FieldList(StringField('MX Name'))
+    mx_asoc = FieldList(StringField('MX Association'))
+    submit = SubmitField('Submit')
+
+    def set_defaults(self):
+        self.process()
+
+class ReverseZondeDetails(FlaskForm):
+    type = StringField('Type',render_kw={'readonly': True})
+    name = StringField('Name')
+    path = StringField('Path')
+    allow_query = FieldList(StringField('Allow Query'))
+
+    domains = FieldList(StringField('Domains'))
+    ns = FieldList(StringField('NS'))
+    ptr_name = FieldList(StringField('PTR Record'))
+    ptr_ip = FieldList(StringField('PTR Ip'))
+    submit = SubmitField('Submit')
+
+    def set_defaults(self,zone_info,zone_data):
+        self.type.default = zone_info.get("Type")
+        self.name.default = zone_info.get("Name")
+        self.path.default = zone_info.get("Path")
+        self.allow_query.default = zone_info.get("Allow_query")
+
+        self.domains.default = zone_data.get("domains")
+        self.ns.default = zone_data.get("NS")
+        self.ptr_name.default = zone_data.get('PTR_Record')
+        self.ptr_ip.default = zone_data.get('PTR_IP')
+        self.process()
+
+class AddNewReverseZoneForm(FlaskForm):
+    type = StringField('Type',render_kw={'readonly': True})
+    name = StringField('Name')
+    path = StringField('Path')
+    allow_query = FieldList(StringField('Allow Query'))
+    domains = FieldList(StringField('Domains'))
+    ns = FieldList(StringField('NS'))
+    ptr_name = FieldList(StringField('PTR Record'))
+    ptr_ip = FieldList(StringField('PTR Ip'))
+    submit = SubmitField('Submit')
+    
+    def set_defaults(self):
+        self.type.default="reverse"
+        self.process()

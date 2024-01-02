@@ -1,5 +1,41 @@
 {% extends 'base.html' %}
-
+{% block style %}
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/zones.css') }}">
+{% endblock %}
 {% block content %}
-<h1>DNS Reverse Zones</h1>
+<div class="zones_container">
+    <h1>DNS Reverse Zones</h1>
+    <a href="{{ url_for('add_reverse_zone') }}" class="btn btn-success">Add New Reverse Zone</a> 
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Path</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set items_per_page = 6 %}
+            {% set start_index = (page - 1) * items_per_page %}
+            {% set end_index = start_index + items_per_page %}
+            {% for zone in zones[start_index:end_index] %}
+                <tr>
+                    <td>{{ zone.Name }}</td>
+                    <td>{{ zone.Path }}</td>
+                    <td>
+                        <a href="{{ url_for('reverse_zone_details', zone_id=zone.Id) }}" class="btn btn-primary">Show Details</a>
+                        <a href="{{ url_for('delete_reverse_zone', zone_id=zone.Id) }}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+        <ul>
+            {% for page_num in range(1, (zones|length // 6) + 2) %}
+                <li class="page-item"><a href="{{ url_for('reverse_zones', page=page_num) }}" class="page-link">{{ page_num }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 {% endblock %}
