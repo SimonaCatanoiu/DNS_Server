@@ -1,5 +1,4 @@
-{% for zone in zones %}
-zone "{{ zone.Name }}" {
+{% for zone in zones %}zone "{{ zone.Name }}" {
     type master;
     file "{{ zone.Path }}";
     allow-query { {{ ", ".join(zone.Allow_query) }}; };

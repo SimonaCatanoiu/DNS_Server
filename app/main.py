@@ -1,6 +1,7 @@
 from flask import Flask,render_template, request, redirect, url_for
 from json_handler import *
 from forms import *
+from dns_handler import *
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "proiect_retele"
 
@@ -23,6 +24,7 @@ def home():
     dns_info = read_file_json(json_path)
     log_info = read_file_json(json_path_logs)
     form.set_defaults(dns_info,log_info)
+    create_conf_local()
     return render_template('home.html',form=form)
 
 @app.route("/logs")

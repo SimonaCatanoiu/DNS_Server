@@ -1,19 +1,17 @@
 acl "trusted_subnet" {
-    {% for subnet in trusted_subnets %}
-    {{ subnet }};
+    {% for subnet in Allowed_recursion %}{{ subnet }};
     {% endfor %}
 };
 
 options {
     directory "/var/cache/bind";
-    recursion {{ recursion }};
+    recursion {{ Recursion }};
     allow-recursion { trusted_subnet; };
-    listen-on { {{ ip }}; };
+    listen-on { {{ IP }}; };
     listen-on-v6 { none; };
     allow-transfer { none; };
     forwarders {
-        {% for forwarder in forwarders %}
-            {{ forwarder }};
+        {% for forwarder in Forwarders %}{{ forwarder }};
         {% endfor %}
     };
 

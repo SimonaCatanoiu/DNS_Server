@@ -1,0 +1,15 @@
+$TTL    604800
+@   IN  SOA {% for domain in data.domains %}{{ domain }}. {% endfor %}(
+        {{ data.Serial }}       ; Serial
+       604800       ; Refresh
+        86400       ; Retry
+      2419200       ; Expire
+      604800)  ; Negative Cache TTL
+;
+; NS records
+{% for ns in data.NS %}
+@        IN      NS      {{ ns }}.
+; PTR Records
+{% for (ptr_record, ptr_ip) in enumerate(zip(data.PTR_Record, data.PTR_IP)) %}
+{{ ptr_ip }}  IN      PTR     {{ ptr_record }}.
+{% endfor %}
