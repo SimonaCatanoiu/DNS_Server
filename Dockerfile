@@ -5,7 +5,7 @@ VOLUME ["/app"]
 # Update package list and install Flask And Bind9 + Supervisor
 RUN apt-get update \
     && apt-get install -y bind9 bind9utils bind9-doc net-tools dnsutils \
-    python3 python3-pip supervisor
+    python3 python3-pip supervisor nano vim
 
 # Create directory and set permissions for Bind9 logs
 RUN mkdir /var/named/ \

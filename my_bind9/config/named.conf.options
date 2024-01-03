@@ -1,7 +1,8 @@
 acl "trusted_subnet" {
     172.20.0.0/24;
     localhost;
-  };
+    
+};
 
 options {
     directory "/var/cache/bind";
@@ -11,8 +12,8 @@ options {
     listen-on-v6 { none; };
     allow-transfer { none; };
     forwarders {
-            8.8.8.8;
-            8.8.4.4;
+        8.8.8.8;
+        
     };
 
     check-names master ignore;

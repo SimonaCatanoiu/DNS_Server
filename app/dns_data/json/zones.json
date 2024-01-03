@@ -19,6 +19,16 @@
         "any"
       ],
       "Json_data_path": "./dns_data/json/zones/0.20.172.in-addr.arpa.zone.json"
+    },
+    {
+      "Id": 3,
+      "Type": "reverse",
+      "Name": "0.30.172.in-addr.arpa",
+      "Path": "/var/lib/bind/0.30.172.in-addr.arpa.zone",
+      "Allow_query": [
+        "any"
+      ],
+      "Json_data_path": "./dns_data/json/zones/0.30.172.in-addr.arpa.zone.json"
     }
   ]
 }

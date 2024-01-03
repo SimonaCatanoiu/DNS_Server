@@ -173,7 +173,7 @@ def generate_json_new_zone(form_data):
     write_file_json(json_path,data)
     write_file_json("./dns_data/json/zones/db."+name+".json",json_data)
 
-    return data,None
+    return data,num_zones+1
 
 def is_valid_reverse_dns_zone(name):
     pattern = re.compile(r'^(\d+\.)+in-addr\.arpa$')
@@ -288,4 +288,4 @@ def generate_json_new_reverse_zone(form_data):
     write_file_json(json_path,data)
     write_file_json("./dns_data/json/zones/"+name+".zone.json",json_data)
 
-    return data,None
+    return data,num_zones+1

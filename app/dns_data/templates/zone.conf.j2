@@ -1,22 +1,20 @@
 $TTL    604800
-@   IN  SOA {% for domain in data.domains %}{{ domain }}. {% endfor %} (
-                  {{ data.Serial }}     ; Serial
-             604800     ; Refresh
-              86400     ; Retry
-            2419200     ; Expire
-             604800 )   ; Negative Cache TTL
-;
+@   IN  SOA {% for domain in domains %}{{ domain }}. {% endfor %}(
+    {{ Serial }} ; Serial
+    604800 ; Refresh
+    86400 ; Retry
+    2419200 ; Expire
+    604800 ; Negative Cache TTL
+)
+
 ; NS records
-{% for ns in data.NS %}
-@        IN      NS      {{ ns }}.
+{% for ns in NS %}@        IN      NS      {{ ns }}.
 {% endfor %}
 
 ; A records
-{% for name, asoc in zip(data.A_name, data.A_asoc) %}
-{{ name }}.   IN      A      {{ asoc }}
+{% for name, asoc in A_name|zip_lists(A_asoc) %}{{ name }}.   IN      A      {{ asoc }}
 {% endfor %}
 
 ; MX record
-{% for mx_name, mx_asoc in zip(data.MX_name, data.MX_asoc) %}
-{{ mx_name }}        IN      MX     10  {{ mx_asoc }}
+{% for mx_name, mx_asoc in MX_name|zip_lists(MX_asoc) %}{{ mx_name }}        IN      MX     10  {{ mx_asoc }}
 {% endfor %}

@@ -1,0 +1,20 @@
+{
+  "Serial": 20,
+  "domains": [
+    "incercare.com",
+    "root.incercare.com"
+  ],
+  "NS": [
+    "ns1.incercare.com"
+  ],
+  "A_name": [
+    "site.incercare.com",
+    "ns1.incercare.com"
+  ],
+  "A_asoc": [
+    "172.20.0.4",
+    "172.20.0.2"
+  ],
+  "MX_name": [],
+  "MX_asoc": []
+}

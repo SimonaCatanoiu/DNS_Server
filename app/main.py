@@ -19,12 +19,13 @@ def home():
         
         write_file_json(json_path,result1)
         write_file_json(json_path_logs,result2)
+        create_named_conf()
+        create_conf_options()
         return redirect(url_for('home'))
     
     dns_info = read_file_json(json_path)
     log_info = read_file_json(json_path_logs)
     form.set_defaults(dns_info,log_info)
-    create_conf_local()
     return render_template('home.html',form=form)
 
 @app.route("/logs")
@@ -72,7 +73,8 @@ def submit_zone_details(zone_id):
     result1,result2 = generate_json_zone_details(new_data,zone_id)
     if 'error' in result1:
         return render_template('error.html', error=result1, target_page_url=url_for('home'), target_page_name="Home")
-    
+    create_conf_local()
+    create_zone_file(zone_id)
     return redirect(url_for('zones', page=1))
 
 @app.route("/delete_zone/<int:zone_id>")
@@ -81,6 +83,7 @@ def delete_zone(zone_id):
     data = read_file_json(json_path)
     data["zones"] = [zone for zone in data["zones"] if zone["Id"] != zone_id]
     write_file_json(json_path,data)
+    create_conf_local()
     return redirect(url_for('zones', page=1))
     
 @app.route("/add_zone")
@@ -92,9 +95,11 @@ def add_zone():
 @app.route("/submit_add_zone", methods=['POST'])
 def submit_add_zone():
     new_data = request.form.to_dict()
-    result1,result2 = generate_json_new_zone(new_data)
+    result1,zone_id = generate_json_new_zone(new_data)
     if 'error' in result1:
         return render_template('error.html', error=result1, target_page_url=url_for('add_zone'), target_page_name="Add Zone")
+    create_conf_local()
+    create_zone_file(zone_id)
     return redirect(url_for('zones', page=1))
 
 @app.route("/reverse_zones/<int:page>")
@@ -122,6 +127,8 @@ def submit_reverse_zone_details(zone_id):
     result1,result2 = generate_json_reverse_zone(new_data,zone_id)
     if 'error' in result1:
         return render_template('error.html', error=result1, target_page_url=url_for('home'), target_page_name="Home")
+    create_conf_local()
+    create_zone_file(zone_id)
     return redirect(url_for('reverse_zones', page=1))
 
 @app.route("/delete_reverse_zone/<int:zone_id>")
@@ -130,6 +137,7 @@ def delete_reverse_zone(zone_id):
     data = read_file_json(json_path)
     data["zones"] = [zone for zone in data["zones"] if zone["Id"] != zone_id]
     write_file_json(json_path,data)
+    create_conf_local()
     return redirect(url_for('reverse_zones', page=1))
 
 @app.route("/add_reverse_zone")
@@ -141,9 +149,11 @@ def add_reverse_zone():
 @app.route("/submit_add_reverse_zone", methods=['POST'])
 def submit_add_reverse_zone():
     new_data = request.form.to_dict()
-    result1,result2 = generate_json_new_reverse_zone(new_data)
+    result1,zone_id = generate_json_new_reverse_zone(new_data)
     if 'error' in result1:
         return render_template('error.html', error=result1, target_page_url=url_for('add_reverse_zone'), target_page_name="Add Reverse Zone")
+    create_conf_local()
+    create_zone_file(zone_id)
     return redirect(url_for('reverse_zones', page=1))
 
 if __name__ == '__main__':
